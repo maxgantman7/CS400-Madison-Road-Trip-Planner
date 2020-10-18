@@ -41,6 +41,13 @@ public class City implements Comparable<City> {
 		this.distance = dist;
 	}
 	
+	 @Override
+    public String toString(){
+       String temp = "";
+        temp += this.distance;
+        return (temp);
+    }
+	
 	/**
 	 * Compares the distance of this city from Madison to the distance
 	 * from Madison of another city.

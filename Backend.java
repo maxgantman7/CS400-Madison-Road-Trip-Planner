@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 public class Backend {
     private RedBlackTree<City> tree = new RedBlackTree();
-    private LinkedList<City> traversedCities = new LinkedList();
+    private LinkedList<City> traversedCities = new LinkedList(); // varible that is reused to temporarily store city lists
 
 
 
@@ -12,9 +12,28 @@ public class Backend {
      * @return a linked list of the City objects within the given distance
      */
     public LinkedList<City> getCitiesWithin(int distance){
+        LinkedList<City> citiesWithin = new LinkedList<>();
 
+        // get the in order tree stored into the traversedCities field;
+       getTreeInOrder();
 
-        return null;
+        for (City city : traversedCities ){ // search through each city until the distance exceeds the users search
+            if (city.getDistance() <= distance){
+                citiesWithin.add(city);
+            }
+            else {
+                return citiesWithin;
+            }
+        }
+
+        return citiesWithin;
+    }
+
+    /**
+     * This method will return the RB Tree
+     */
+    public RedBlackTree<City> getTree(){
+        return this.tree;
     }
 
     /**
@@ -32,8 +51,10 @@ public class Backend {
     }
 
     /**
-     * This method will help to traverse and store the tree in order.
-     * @return
+     * This method will help to traverse and store the whole tree in order.
+     *
+     * @param current is the node currenly being visited in the list
+     * @return none
      */
     private void helpGetTreeInOrder(RedBlackTree.Node<City> current){
         if (current != null){
@@ -61,3 +82,4 @@ public class Backend {
     }
 
 }
+
