@@ -1,42 +1,42 @@
-Seattle, 1904
-Portland, 1983
-San Francisco, 2086
-Los Angeles, 1974
-Las Vegas, 1706
-Boise, 1651
-Salt Lake City, 1356
-Phoenix, 1688
-Cheyenne, 919
-Denver, 960
-Albuquerque, 1273
-Fargo, 504
-Omaha, 425
-Kansas City, 484
-Oklahoma City, 835
-Dallas, 989
-Houston, 1135
-San Antonio, 1299
-New Orleans, 1035
-St Louis, 359
-Des Moines, 292
-Minneapolis, 270
-Milwaukee, 79
-Green Bay, 136
-Chicago, 147
-Indianapolis, 330
-Detroit, 428
-Cleveland, 491
-Louisville, 445
-Nashville, 619
-Atlanta, 863
-Orlando, 1302
-Miami, 1525
-Charleston, 1058
-Charlotte, 903
-Washington DC, 843
-Baltimore, 848
-Philadelphia, 904
-Pittsburgh, 607
-New York, 935
-Buffalo, 679
-Boston, 1129
+Seattle 1904
+Portland 1983
+San Francisco 2086
+Los Angeles 1974
+Las Vegas 1706
+Boise 1651
+Salt Lake City 1356
+Phoenix 1688
+Cheyenne 919
+Denver 960
+Albuquerque 1273
+Fargo 504
+Omaha 425
+Kansas City 484
+Oklahoma City 835
+Dallas 989
+Houston 1135
+San Antonio 1299
+New Orleans 1035
+St Louis 359
+Des Moines 292
+Minneapolis 270
+Milwaukee 79
+Green Bay 136
+Chicago 147
+Indianapolis 330
+Detroit 428
+Cleveland 491
+Louisville 445
+Nashville 619
+Atlanta 863
+Orlando 1302
+Miami 1525
+Charleston 1058
+Charlotte 903
+Washington DC 843
+Baltimore 848
+Philadelphia 904
+Pittsburgh 607
+New York 935
+Buffalo 679
+Boston 1129
