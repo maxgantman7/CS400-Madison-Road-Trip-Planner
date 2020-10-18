@@ -8,7 +8,7 @@ public class ReadTextFile {
 		File file = new File("Destinations.txt");
 		
 		if(!file.exists()) { //Throws exception if File doesn't exist
-			throw new FileNotFoundException("txt file with course information was not found");
+			throw new FileNotFoundException("txt file with destinations was not found");
 		}
 		
 		String cityName = ""; // name of city to be added
