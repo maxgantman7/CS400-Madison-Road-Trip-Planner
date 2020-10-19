@@ -68,6 +68,10 @@ public class Backend {
         return;
     }
 
+    /**
+     * This method will add a City object to the red black tree.
+     * @param city the city to be added to the tree
+     */
     public void add(City city){
     try {
         tree.insert(city);
@@ -79,6 +83,13 @@ public class Backend {
         System.out.println(e1.getMessage()); // potentially change depending on how we want to implement
     }
         return;
+    }
+
+    /**
+     * This method will clear all the cities from the current red black tree
+     */
+    public void deleteAllCities(){
+        this.tree = new RedBlackTree<>();
     }
 
 }
