@@ -10,7 +10,7 @@ public class FrontEnd {
 
 
   /**
-   * This is a helper method to print out a divider of 25 "-"
+   * This is a helper method to print out a divider with app name.
    */
   private static void topDivider() {
     for (int i = 0; i < 15; i++) {
@@ -23,6 +23,9 @@ public class FrontEnd {
     System.out.println();
   }
 
+  /***
+   * Prints out divider without app name.
+   */
   private static void bottomDivider() {
     for (int i = 0; i < 59; i++) {
       System.out.print("~");
@@ -51,16 +54,15 @@ public class FrontEnd {
    */
   public static void addCity() {
     Scanner scnr = new Scanner(System.in);
-
     // Data wrangler class
     String cityName;
-    double miles;
+    int miles;
 
-    System.out.println("Enter the city name. EX: Milwaukee or New York");
+    System.out.println("Enter the city name. EX: Milwaukee or NewYork");
     cityName = scnr.nextLine();
 
-    System.out.println("Enter distance from Madison in miles. EX: 20.3");
-    miles = scnr.nextDouble();
+    System.out.println("Enter distance from Madison in miles. EX: 20");
+    miles = scnr.nextInt();
 
     System.out.println("Added " + cityName + " to route!");
 
@@ -117,7 +119,7 @@ public class FrontEnd {
     Scanner scnr = new Scanner(System.in);
     String file;
     String input;
-    double miles;
+    int miles;
 
     topDivider();
     System.out.println("Welcome to Road Trip Finder. Let's make a road trip!");
@@ -135,10 +137,10 @@ public class FrontEnd {
             break;
           case "i":
             System.out.println("Input distance from Madison in miles: ");
-            miles = scnr.nextDouble();
+            miles = scnr.nextInt();
             System.out.println("These are all the cities within " + miles +
                 " miles of Madison:");
-            // back end method
+            System.out.println(back.getCitiesWithin(miles).toString());
             System.out.println();
             System.out.println("*h: Display the help menu");
             break;
@@ -156,15 +158,13 @@ public class FrontEnd {
             break;
           case "ex":
             System.out.println("Deleting all cities.");
-            // back end method
+            // Still not done back end method
             System.out.println();
             System.out.println("*h: Display the help menu");
             break;
           case "f":
-            // Issue with this. The file is read correctly but display() throws a weird error.
-            // Try adding Destinations.txt and then displaying it
             System.out.println("Insert file name: ");
-            file = scnr.next();
+            file = scnr.nextLine();
             try {
               dataWrangler(file);
             } catch (FileNotFoundException e) {
