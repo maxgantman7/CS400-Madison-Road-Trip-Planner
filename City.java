@@ -41,6 +41,10 @@ public class City implements Comparable<City> {
 		this.distance = dist;
 	}
 	
+public String printTrip(){
+    return "-------> " + this.name + " " + this.distance + " miles";
+  }
+	
 	 @Override
     public String toString(){
        String temp = "";
