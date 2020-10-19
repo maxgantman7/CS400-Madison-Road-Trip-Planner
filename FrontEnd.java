@@ -158,7 +158,7 @@ public class FrontEnd {
             break;
           case "ex":
             System.out.println("Deleting all cities.");
-            // Still not done back end method
+            back.deleteAllCities();
             System.out.println();
             System.out.println("*h: Display the help menu");
             break;
