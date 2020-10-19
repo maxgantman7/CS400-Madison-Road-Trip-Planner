@@ -1,41 +1,49 @@
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class FrontEnd {
 
   // How to connect front end to back end
-  // private static BackEnd back = new BackEnd();
   private static BackEnd back = new BackEnd();
-  // public static RedBlackTree getTree(){
-    // return back.getTree();
- // }
 
-  // Need dataWrangler method
 
   /**
    * This is a helper method to print out a divider of 25 "-"
    */
-  private static void divider() {
-    for (int i = 0; i < 30; i++) {
-      System.out.print("<|>");
+  private static void topDivider() {
+    for (int i = 0; i < 15; i++) {
+      System.out.print("~");
     }
-    System.out.println("");
+    System.out.print("| Madison Road Trip Finder |");
+    for (int i = 0; i < 16; i++) {
+      System.out.print("~");
+    }
+    System.out.println();
+  }
+
+  private static void bottomDivider() {
+    for (int i = 0; i < 59; i++) {
+      System.out.print("~");
+    }
+    System.out.println();
   }
 
   /**
    * This method prints out the help menu of commands
    */
   private static void help() {
-    divider();
+    topDivider();
     System.out.print("*Commands and their description: \n"
         + "*h: Display the help menu\n"
         + "*i: Input distance in miles from Madison\n"
         + "*a: Add new city\n"
-        + "*d: Delete a city\n"
-        + "*dd: Delete all cities\n"
+        + "*d: Display current route\n"
+        + "*ex: Delete all cities\n"
         + "*f: Add file of cities\n"
         + "*q: Quit program\n");
-    divider();
+    bottomDivider();
   }
 
   /**
@@ -45,12 +53,8 @@ public class FrontEnd {
     Scanner scnr = new Scanner(System.in);
 
     // Data wrangler class
-    AcademicClass course;
     String cityName;
     double miles;
-    double gasPrice;
-    double totalCost;
-
 
     System.out.println("Enter the city name. EX: Milwaukee or New York");
     cityName = scnr.nextLine();
@@ -58,18 +62,38 @@ public class FrontEnd {
     System.out.println("Enter distance from Madison in miles. EX: 20.3");
     miles = scnr.nextDouble();
 
-    System.out.println("Enter gas price per mile. EX 2.1");
-    gasPrice = scnr.nextDouble();
-    totalCost = gasPrice * miles;
+    System.out.println("Added " + cityName + " to route!");
 
-    // Data wrangler class
-    city = new AcademicClass(classCode, gpa, percentA, percentF);
+    back.add(new City(cityName, miles));
 
-    System.out.println("Added city " + cityName);
+    // help();
+  }
 
-    back.insert(city);
+  /**
+   * This method creates an array list of city names and distances by reading a text file.
+   */
+  public static void dataWrangler(String fileName) throws FileNotFoundException {
+    // if file not found
+    File file = new File(fileName);
+    if(!file.exists()){
+      throw new FileNotFoundException("File not found!");
+    }
 
-    help();
+    Scanner sc = new Scanner(file);
+    Scanner sc2;
+    String line;
+    while (sc.hasNextLine()) {
+      line = sc.nextLine();
+      sc2 = new Scanner(line);
+      sc2.useDelimiter(" ");
+      String cityName = sc2.next();
+      String dis = sc2.next().trim();
+      double miles = Double.parseDouble(dis);
+
+      back.add(new City(cityName, miles));
+
+    }
+   // help();
   }
 
   // Need inOrderTraversal method
@@ -78,48 +102,76 @@ public class FrontEnd {
    * @return
    */
   public static String display(){
-    // Maybe can only add up to ten cities???
-    String display = "";
-    for(int i = 0, i < )
-      display += //add all get methods and toString
+    LinkedList<City> temp  =  back.getTreeInOrder();
+    String empty= "Madison, 0 miles ";
+    for(City i: temp){
+      empty += i.toString() + " ";
+    }
+    return empty;
+    // Traverse linked list
   }
 
   private static boolean quit = false;
 
   public static void main(String args[]) {
     Scanner scnr = new Scanner(System.in);
-    String input = "";
+    String file;
+    String input;
+    double miles;
+
+    topDivider();
+    System.out.println("Welcome to Road Trip Finder. Let's make a road trip!");
+    bottomDivider();
+    System.out.println();
+    help();
 
     while (quit == false) {
       if (scnr.hasNext()) {
+        input = scnr.nextLine();
         switch (input) {
           case "h":
             help();
             System.out.println("Enter another command:");
             break;
           case "i":
-            System.out.println("Inputing distance.");
-            // can this return
+            System.out.println("Input distance from Madison in miles: ");
+            miles = scnr.nextDouble();
+            System.out.println("These are all the cities within " + miles +
+                " miles of Madison:");
+            // back end method
+            System.out.println();
+            System.out.println("*h: Display the help menu");
             break;
           case "a":
             System.out.println("Adding a new city.");
             addCity();
+            System.out.println();
+            System.out.println("*h: Display the help menu");
             break;
           case "d":
-            System.out.println("Deleting a city.");
+            System.out.println("Current route: ");
+            System.out.println(display());
+            System.out.println();
+            System.out.println("*h: Display the help menu");
             break;
-          case "dd":
+          case "ex":
             System.out.println("Deleting all cities.");
+            // back end method
+            System.out.println();
+            System.out.println("*h: Display the help menu");
             break;
           case "f":
-            System.out.println("Add file of cities: ");
-            String fileName = scnr.next();
+            // Issue with this. The file is read correctly but display() throws a weird error.
+            // Try adding Destinations.txt and then displaying it
+            System.out.println("Insert file name: ");
+            file = scnr.next();
             try {
-              dataWrangler(fileName);
+              dataWrangler(file);
             } catch (FileNotFoundException e) {
               System.out.println("File not found!");
             }
-            System.out.println("Enter another command:");
+            System.out.println();
+            System.out.println("*h: Display the help menu");
             break;
           case "q":
             quit = true;
@@ -134,7 +186,7 @@ public class FrontEnd {
       }
 
       if (quit == true) {
-        System.out.println("Quitting program");
+        System.out.println("Quitting program!");
         break;
       }
       continue;
