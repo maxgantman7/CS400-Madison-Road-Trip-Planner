@@ -45,12 +45,12 @@ public String printTrip(){
     return "-------> " + this.name + " " + this.distance + " miles";
   }
 	
-	 @Override
-    public String toString(){
-       String temp = "";
-        temp += this.distance;
-        return (temp);
-    }
+	@Override
+  public String toString(){
+    String temp = "";
+    temp += this.name + " " + this.distance;
+    return (temp);
+  }
 	
 	/**
 	 * Compares the distance of this city from Madison to the distance
