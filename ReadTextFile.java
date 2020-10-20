@@ -15,12 +15,12 @@ public class ReadTextFile {
 		Scanner scan = new Scanner(file);
 		String num = "";
 		City city; // city object for the city to be added
-		int dist; // distance of city to be added
+		double dist; // distance of city to be added
 		
 		while(scan.hasNextLine()) { //Loops until no more lines are left in txt file
 			cityName = scan.next(); // first word is the city name
 			num = scan.next(); // second word is the distance from Madison
-			dist = Integer.parseInt(num); // convert second word to an int
+			dist = Double.parseDouble(num); // convert second word to a double
 			city = new City(cityName, dist);
 			tree.insert(city);
 			if (scan.hasNextLine()) {
