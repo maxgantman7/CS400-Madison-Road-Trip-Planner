@@ -16,8 +16,13 @@ BackEnd.class: BackEnd.java
 FrontEnd.class: FrontEnd.java
         javac FrondEnd.java
 
-test: RoadTripTester.java
-        javac RoadTripTester.java
+test: RoadTripTester.class
+        java -jar junit5.jar --class-path . --scan-classpath --details tree
+
+RoadTripTester.class:
+        javac -cp .:junit5.jar RoadTripTester.java
 
 clean:
         $(RM) *.class
+
+
