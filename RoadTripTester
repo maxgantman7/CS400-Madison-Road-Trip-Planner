@@ -1,4 +1,10 @@
-
+// --== CS400 File Header Information ==--
+// Name: Max Gantman
+// Email: mgantman@wisc.edu
+// Team: FD
+// TA: Abhay Kumar
+// Lecturer: Gary Dahl
+// Notes to Grader: <optional extra notes>
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
@@ -51,9 +57,9 @@ public class RoadTripTester {
     back.add(new City("Milwaukee", 79));
     back.add(new City("Green Bay", 136));
     //Case 2: Multiple cities within bounds
-    if (!(back.getCitiesWithin(101).toString().equals("[Buffalo 72, Dallas 56, "
-        +"Tallahasse 120, Minneapolis 100, Woodbury 133, Milwaukee 79, Green Bay 136]"))) {
-    fail("Test failed: Get Cities Within 101 Incorrect");
+   if (!(back.getCitiesWithin(101).toString().equals("[Dallas 56, Buffalo 72, "
+       + "Milwaukee 79, Minneapolis 100]"))) {
+       fail("Test failed: Get Cities Within 101 Incorrect");
     }
     //adding more cities
     back.add(new City("Phoenix", 1688));
@@ -77,21 +83,27 @@ public class RoadTripTester {
     FrontEnd front = new FrontEnd();
     //adding a city
     front.addCity("Milwaukee", 50);
-    if(!(FrontEnd.display().equals("Madison, 0 miles; Milwaukee 50; "))) {      
+    if(!(FrontEnd.display().equals("Madison, 0 miles Milwaukee 50 "))) {  
+      System.out.println(FrontEnd.display());
         fail("Test failed: tree in incorrect order");
     }
     //adding another city
     front.addCity("New York", 200);
-    if(!(FrontEnd.display().equals("Madison, 0 miles; Milwaukee 50; New York 200; ")))
+    if(!(FrontEnd.display().equals("Madison, 0 miles Milwaukee 50 New York 200 "))) {
       fail("Test failed: tree in incorrect order");
+    }
     //adding a duplicate
       front.addCity("Milwaukee", 50);
       if (front.back.getCitiesWithin(100).toString().equals("[50, 50]"))
         fail("Test failed: should not allow duplicate values");
     //adding negative distance
+      try {
       front.addCity("Negative", -5);
-      if (front.back.getCitiesWithin(5).toString().equals("[-5]"))
-        fail("Test failed: should not allow negative values");
+      System.out.println(front.display());
+      fail("Test failed: should not allow negative values");
+      }catch (NumberFormatException e) {
+        
+      }   
 }
   
   
@@ -109,23 +121,5 @@ public class RoadTripTester {
     front.back.deleteAllCities();
     if(!(front.back.getCitiesWithin(300).toString().equals("[]")))
         fail("Test failed: delete all cities did not work");
-}
-  
-  /**
-   * Tests adding cities through a file. Fails when file is not found or 
-   * incorrect cities are returned from getCitiesWithin
-   * 
-   * @return false when  file is not found or getCitiesWithin() returns the wrong value
-   */
-  @Test
-  public void testFromFile() {
-    FrontEnd front = new FrontEnd();
-    try {
-    front.dataWrangler("Destinations.txt");
-    }catch(FileNotFoundException e) {
-      fail("file not found");
-    }
-    if(!(front.back.getCitiesWithin(150).toString().equals("[79, 136, 147]")))
-        fail("Test failed: incorrect when importing cities from file");
 }
 }
