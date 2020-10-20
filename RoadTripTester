@@ -1,10 +1,4 @@
-// --== CS400 File Header Information ==--
-// Name: Max Gantman
-// Email: mgantman@wisc.edu
-// Team: FD
-// TA: Abhay Kumar
-// Lecturer: Gary Dahl
-// Notes to Grader: <optional extra notes>
+
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
@@ -57,10 +51,10 @@ public class RoadTripTester {
     back.add(new City("Milwaukee", 79));
     back.add(new City("Green Bay", 136));
     //Case 2: Multiple cities within bounds
-   // if (!(back.getCitiesWithin(101).toString().equals("[Buffalo 72, Dallas 56, "
-     //   +"Tallahasse 120, Minneapolis 100, Woodbury 133, Milwaukee 79, Green Bay 136]"))) {
-       // fail("Test failed: Get Cities Within 101 Incorrect");
-    //}
+    if (!(back.getCitiesWithin(101).toString().equals("[Buffalo 72, Dallas 56, "
+        +"Tallahasse 120, Minneapolis 100, Woodbury 133, Milwaukee 79, Green Bay 136]"))) {
+    fail("Test failed: Get Cities Within 101 Incorrect");
+    }
     //adding more cities
     back.add(new City("Phoenix", 1688));
     back.add(new City("Portland", 1904));
