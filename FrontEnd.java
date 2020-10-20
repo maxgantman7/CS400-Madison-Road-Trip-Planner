@@ -43,7 +43,7 @@ public class FrontEnd {
         + "*i: Input distance in miles from Madison\n"
         + "*a: Add new city\n"
         + "*d: Display current route\n"
-        + "*ex: Delete all cities\n"
+        + "*c: Clear trip\n"
         + "*f: Add file of cities\n"
         + "*q: Quit program\n");
     bottomDivider();
@@ -52,7 +52,7 @@ public class FrontEnd {
   /**
    * This method will allow a user to add a class and data to the table
    */
-  public static void addCity() {
+  public static void addCity() throws NumberFormatException{
     Scanner scnr = new Scanner(System.in);
     // Data wrangler class
     String cityName;
@@ -63,6 +63,9 @@ public class FrontEnd {
 
     System.out.println("Enter distance from Madison in miles. EX: 20");
     miles = scnr.nextInt();
+    if(miles < 0){
+      throw new NumberFormatException("Only positive distances please.");
+    }
 
     System.out.println("Added " + cityName + " to route!");
 
@@ -95,7 +98,7 @@ public class FrontEnd {
       back.add(new City(cityName, miles));
 
     }
-   // help();
+    // help();
   }
 
   // Need inOrderTraversal method
@@ -146,7 +149,11 @@ public class FrontEnd {
             break;
           case "a":
             System.out.println("Adding a new city.");
-            addCity();
+            try {
+              addCity();
+            } catch (NumberFormatException e){
+              System.out.println("Not added. No negative distances. Try again.");
+            }
             System.out.println();
             System.out.println("*h: Display the help menu");
             break;
@@ -156,8 +163,8 @@ public class FrontEnd {
             System.out.println();
             System.out.println("*h: Display the help menu");
             break;
-          case "ex":
-            System.out.println("Deleting all cities.");
+          case "c":
+            System.out.println("Clear trip");
             back.deleteAllCities();
             System.out.println();
             System.out.println("*h: Display the help menu");
@@ -192,8 +199,8 @@ public class FrontEnd {
       continue;
     }
 
-      }
-    }
+  }
+}
 
 
 
