@@ -1,0 +1,120 @@
+import org.junit.jupiter.api.BeforeEach;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.LinkedList;
+
+public class RoadTripTester {
+
+  /**
+   * Tests adding 5 cities to the BackEnd tree, ensuring the tree sets up correctly.
+   * 
+   * @return false when tree is inaccurate
+   */
+  @Test
+  public void testBackEndAdd() {
+    BackEnd back = new BackEnd();
+
+    back.add(new City("Minneapolis", 100));
+    back.add(new City("Dallas", 56));
+    back.add(new City("Buffalo", 72));
+    back.add(new City("Tallahasse", 120));
+    back.add(new City("Woodbury", 133));
+    RedBlackTree<City> tempTree = back.getTree();
+    if (!(tempTree.toString().equals("[72, 56, 120, 100, 133]")))
+        fail("Test failed: tree in incorrect order");
+    
+}
+  /**
+   * Adds cities to the tree and tests getting within a certain distance.
+   * 
+   * @return false when back end does not return correct list of cities
+   */
+  @Test
+  public void testBackEndGetCitiesWithin() {
+    BackEnd back = new BackEnd();
+    LinkedList<City> tempList;
+
+    back.add(new City("Minneapolis", 100));
+    //Case 1: No cities within bounds
+    if (!(back.getCitiesWithin(50).toString().equals("[]")))
+      fail("Test failed: Get Cities Within 50 Incorrect");
+    //adding more cities
+    back.add(new City("Dallas", 56));
+    back.add(new City("Buffalo", 72));
+    back.add(new City("Tallahasse", 120));
+    back.add(new City("Woodbury", 133));
+    back.add(new City("Milwaukee", 79));
+    back.add(new City("Green Bay", 136));
+    //Case 2: Multiple cities within bounds
+    if (!(back.getCitiesWithin(101).toString().equals("[56, 72, 79, 100]")))
+        fail("Test failed: Get Cities Within 101 Incorrect");
+    //adding more cities
+    back.add(new City("Phoenix", 1688));
+    back.add(new City("Portland", 1904));
+    //Case 3: All cities within bounds
+    if (!(back.getCitiesWithin(2000).toString().equals("[56, 72, 79, 100, 120, 133, 136, 1688, 1904]")))
+      fail("Test failed: Get Cities Within 2,000 Incorrect"); 
+}
+  
+  /**
+   * Tests adding 2 cities to the FrontEnd, ensuring that the cities are added
+   * and can be displayed
+   * 
+   * @return false when tree is inaccurate
+   */
+  @Test
+  public void testFrontEndAdd() {
+    FrontEnd front = new FrontEnd();
+    //adding a city
+    front.addCity("Milwaukee", 50);
+    if(!(FrontEnd.display().equals("Madison, 0 miles Milwaukee 50")))
+        fail("Test failed: tree in incorrect order");
+    //adding another city
+    front.addCity("New York", 200);
+    if(!(FrontEnd.display().equals("Madison, 0 miles Milwaukee 50 New York 200")))
+        fail("Test failed: tree in incorrect order");
+    //adding a duplicate
+      front.addCity("Milwaukee", 50);
+      if (front.back.getCitiesWithin(100).toString().equals("[50, 50]"))
+        fail("Test failed: should not allow duplicate values");
+    //adding negative distance
+      front.addCity("Negative", -5);
+      if (front.back.getCitiesWithin(5).toString().equals("[-5]"))
+        fail("Test failed: should not allow negative values");
+}
+  
+  /**
+   * Tests adding 2 cities to the FrontEnd, ensuring that the cities are added
+   * and can be displayed
+   * 
+   * @return false when tree is inaccurate
+   */
+  @Test
+  public void testFrontEndOutput() {
+    FrontEnd front = new FrontEnd();
+    front.addCity("Milwaukee", 50);
+    front.addCity("Chicago", 100);
+    front.addCity("New York", 200);
+    if(!(front.back.getCitiesWithin(300).toString().equals("[50, 100, 200]")))
+        fail("Test failed: front end output incorrect");
+}
+  
+  /**
+   * Tests adding 2 cities to the FrontEnd, ensuring that the cities are added
+   * and can be displayed
+   * 
+   * @return false when tree is inaccurate
+   */
+  @Test
+  public void testDeleteAll() {
+    FrontEnd front = new FrontEnd();
+    front.addCity("Milwaukee", 50);
+    front.addCity("Chicago", 100);
+    front.addCity("New York", 200);
+    front.back.deleteAllCities();
+    if(!(front.back.getCitiesWithin(300).toString().equals("[]")))
+        fail("Test failed: delete all cities did not work");
+}
+}
