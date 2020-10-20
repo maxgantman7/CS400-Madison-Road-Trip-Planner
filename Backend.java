@@ -92,5 +92,14 @@ public class Backend {
         this.tree = new RedBlackTree<>();
     }
 
-}
+    /**
+     * Adds all of the default cities to the red black tree
+     */
+    public void addDefaultCities(){
+    City[] defaultCities = DefaultCities.defaultCities;
+        for (City city : defaultCities){
+        tree.insert(city);
+        }
+    }
 
+}
