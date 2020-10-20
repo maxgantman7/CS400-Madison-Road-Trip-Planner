@@ -1,9 +1,20 @@
+// --== CS400 File Header Information ==--
+// Name: Alex Barkmeier
+// Email: barkmeier@wisc.edu
+// Team: FD
+// TA: Abhay Kumar
+// Lecturer: Gary Dahl
+// Notes to Grader: <optional extra notes>
+
+/**
+ * Class that represents a city and holds relevant data 
+ */
 public class City implements Comparable<City> {
 
 	private String name; // name of the city
-	private int distance; // distance from Madison
+	private double distance; // distance from Madison
 	
-	public City (String name, int dist) {
+	public City (String name, double dist) {
 		this.name = name;
 		this.distance = dist;
 	}
@@ -13,7 +24,7 @@ public class City implements Comparable<City> {
 	 * Returns the distance between this city and Madison
 	 * @return the distance between this city and Madison
 	 */
-	public int getDistance() {
+	public double getDistance() {
 		return this.distance;
 	}
 	
@@ -37,7 +48,7 @@ public class City implements Comparable<City> {
 	 * Set a new distance between this city and Madison
 	 * @param dist - the new distance between this city and Madison
 	 */
-	public void setDistance(int dist) {
+	public void setDistance(double dist) {
 		this.distance = dist;
 	}
 	
