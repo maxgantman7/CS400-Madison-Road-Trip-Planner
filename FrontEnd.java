@@ -3,6 +3,9 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * Creates Front End of Road Trip App.
+ */
 public class FrontEnd {
 
   // How to connect front end to back end
@@ -44,7 +47,6 @@ public class FrontEnd {
         + "*a: Add new city\n"
         + "*d: Display current route\n"
         + "*c: Clear trip\n"
-        + "*f: Add file of cities\n"
         + "*q: Quit program\n");
     bottomDivider();
   }
@@ -52,54 +54,15 @@ public class FrontEnd {
   /**
    * This method will allow a user to add a class and data to the table
    */
-  public static void addCity() throws NumberFormatException{
-    Scanner scnr = new Scanner(System.in);
-    // Data wrangler class
-    String cityName;
-    int miles;
-
-    System.out.println("Enter the city name. EX: Milwaukee or NewYork");
-    cityName = scnr.nextLine();
-
-    System.out.println("Enter distance from Madison in miles. EX: 20");
-    miles = scnr.nextInt();
+  public static void addCity(String cityName, int miles) throws NumberFormatException{
     if(miles < 0){
-      throw new NumberFormatException("Only positive distances please.");
+      throw new NumberFormatException();
     }
-
-    System.out.println("Added " + cityName + " to route!");
-
     back.add(new City(cityName, miles));
 
     // help();
   }
 
-  /**
-   * This method creates an array list of city names and distances by reading a text file.
-   */
-  public static void dataWrangler(String fileName) throws FileNotFoundException {
-    // if file not found
-    File file = new File(fileName);
-    if(!file.exists()){
-      throw new FileNotFoundException("File not found!");
-    }
-
-    Scanner sc = new Scanner(file);
-    Scanner sc2;
-    String line;
-    while (sc.hasNextLine()) {
-      line = sc.nextLine();
-      sc2 = new Scanner(line);
-      sc2.useDelimiter(" ");
-      String cityName = sc2.next();
-      String dis = sc2.next().trim();
-      double miles = Double.parseDouble(dis);
-
-      back.add(new City(cityName, miles));
-
-    }
-    // help();
-  }
 
   // Need inOrderTraversal method
   /**
@@ -149,11 +112,19 @@ public class FrontEnd {
             break;
           case "a":
             System.out.println("Adding a new city.");
+            Scanner addScnr = new Scanner(System.in);
+            String cityName;
+            int addMiles;
+            System.out.println("Enter the city name. EX: Milwaukee or NewYork");
+            cityName = addScnr.nextLine();
+            System.out.println("Enter distance from Madison in miles. EX: 20");
+            addMiles = scnr.nextInt();
             try {
-              addCity();
+              addCity(cityName, addMiles);
             } catch (NumberFormatException e){
-              System.out.println("Not added. No negative distances. Try again.");
+              System.out.println("No negative distances. Not added!");
             }
+            System.out.println("Added " + cityName + " to route!");
             System.out.println();
             System.out.println("*h: Display the help menu");
             break;
@@ -166,17 +137,6 @@ public class FrontEnd {
           case "c":
             System.out.println("Clear trip");
             back.deleteAllCities();
-            System.out.println();
-            System.out.println("*h: Display the help menu");
-            break;
-          case "f":
-            System.out.println("Insert file name: ");
-            file = scnr.nextLine();
-            try {
-              dataWrangler(file);
-            } catch (FileNotFoundException e) {
-              System.out.println("File not found!");
-            }
             System.out.println();
             System.out.println("*h: Display the help menu");
             break;
