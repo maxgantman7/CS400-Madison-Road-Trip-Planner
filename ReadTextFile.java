@@ -20,7 +20,7 @@ public class ReadTextFile {
 		while(scan.hasNextLine()) { //Loops until no more lines are left in txt file
 			cityName = scan.next(); // first word is the city name
 			num = scan.next(); // second word is the distance from Madison
-			dist = Integer.parseInt(num); // convert second word to a double
+			dist = Integer.parseInt(num); // convert second word to an int
 			city = new City(cityName, dist);
 			tree.insert(city);
 			if (scan.hasNextLine()) {
