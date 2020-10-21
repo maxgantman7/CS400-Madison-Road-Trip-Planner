@@ -1,3 +1,11 @@
+// --== CS400 File Header Information ==--
+// Name: Alex Barkmeier and Larry Goldman
+// Email: barkmeier@wisc.edu, ldgoldman@wisc.edu
+// Team: fd
+// TA: Abhay
+// Lecturer: Gary Dahl
+// Notes to Grader: <optional extra notes>
+
 /**
  * Class that represents cities and holds their data
  */
