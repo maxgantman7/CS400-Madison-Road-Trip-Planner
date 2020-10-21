@@ -73,7 +73,7 @@ public class FrontEnd {
     LinkedList<City> temp  =  back.getTreeInOrder();
     String empty= "Madison, 0 miles ";
     for(City i: temp){
-      empty += i.toString() + " ";
+      empty += i.printTrip() + " ";
     }
     return empty;
     // Traverse linked list
