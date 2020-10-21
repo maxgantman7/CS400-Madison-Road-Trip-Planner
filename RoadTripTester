@@ -83,13 +83,12 @@ public class RoadTripTester {
     FrontEnd front = new FrontEnd();
     //adding a city
     front.addCity("Milwaukee", 50);
-    if(!(FrontEnd.display().equals("Madison, 0 miles Milwaukee 50 "))) {  
-      System.out.println(FrontEnd.display());
+    if(!(FrontEnd.display().equals("Madison, 0 miles -------> Milwaukee 50 miles "))) {  
         fail("Test failed: tree in incorrect order");
     }
     //adding another city
     front.addCity("New York", 200);
-    if(!(FrontEnd.display().equals("Madison, 0 miles Milwaukee 50 New York 200 "))) {
+    if(!(FrontEnd.display().equals("Madison, 0 miles -------> Milwaukee 50 miles -------> New York 200 miles "))) {
       fail("Test failed: tree in incorrect order");
     }
     //adding a duplicate
