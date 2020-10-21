@@ -78,14 +78,12 @@ public class RoadTripTester {
       fail("Test failed: Get Cities Within 101 Incorrect");
     }
     //adding more cities
-    back.add(new City("Phoenix", 1688));
-    back.add(new City("Portland", 1904));
     //Case 3: All cities within bounds
-    System.out.println(back.getCitiesWithin(2000).toString());
-    if (!(back.getTree().toString().equals("[Dallas 56.0, Buffalo 72.0, Milwaukee 79.0," +
-        " Minneapolis 100.0, " +
-        "Tallahasse 120.0, Woodbury 133.0, Green Bay 136.0, Phoenix 1688.0, Portland 1904.0]"))) {
-      fail("Test failed: Get Cities Within 2,000 Incorrect");
+    // System.out.println(back.getCitiesWithin(150).toString());
+    if (!(back.getCitiesWithin(150).toString().equals("[Dallas 56.0, Buffalo 72.0, Milwaukee 79" +
+        ".0, " +
+        "Minneapolis 100.0, Tallahasse 120.0, Woodbury 133.0, Green Bay 136.0]"))) {
+      fail("Test failed: Get Cities Within 150 Incorrect");
     }
   }
 
